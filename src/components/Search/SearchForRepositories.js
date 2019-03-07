@@ -42,7 +42,7 @@ class SearchForProject extends Component {
             <div>
                 <Autosuggest
                     repos={this.props.repos}
-                    searchDebounce="500"
+                    searchDebounce="250"
                     onSearch={this.onSearch.bind(this)}
                     onRepoSelect={this.onRepoSelect.bind(this)}
                 />
