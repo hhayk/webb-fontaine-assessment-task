@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import InputGroup from 'react-bootstrap/InputGroup'
-import FormControl from 'react-bootstrap/FormControl'
+import Autosuggest from './autosuggest/Autosuggest';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router";
 import { getRepositoriesByName } from '../../actions/githubActions';
@@ -21,11 +20,13 @@ class SearchForProject extends Component {
         }
     }
 
-    onChange(event) {
-        let fieldVal = event.target.value;
+    onSearch(search) {
+        this.props.repositoriesByName(search);
+    }
 
-        let owner = 'chef-cookbooks';
-        let repo = 'docker';
+    onRepoSelect(repository) {
+        let owner = repository.owner.login;
+        let repo = repository.name;
 
         this.props.history.push('/' + owner + '/' + repo);
         this.searchByOwnerInRepo(owner, repo);
@@ -39,17 +40,21 @@ class SearchForProject extends Component {
     render() {
         return (
             <div>
-                <InputGroup className="mb-3">
-                    <FormControl
-                        placeholder="Project Name"
-                        aria-label="Project Name"
-                        aria-describedby="basic-addon2"
-                        onChange={this.onChange.bind(this)}
-                    />
-                </InputGroup>
+                <Autosuggest
+                    repos={this.props.repos}
+                    searchDebounce="500"
+                    onSearch={this.onSearch.bind(this)}
+                    onRepoSelect={this.onRepoSelect.bind(this)}
+                />
             </div>
         );
     }
+}
+
+const mapStateToProps = (state) => {
+    return {
+        repos: state.repositories.repos
+    };
 }
 
 const mapDispatchToProps = (dispatch, props) => {
@@ -60,4 +65,4 @@ const mapDispatchToProps = (dispatch, props) => {
     }
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(SearchForProject));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchForProject));

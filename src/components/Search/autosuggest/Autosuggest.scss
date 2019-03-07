@@ -1,0 +1,64 @@
+.container-repo {
+  height: 400px;
+  width: 100%;
+  overflow-y: auto;
+  display: block;
+}
+
+.container-repo-row {
+  :hover {
+    background-color: #ddd;
+  }
+}
+
+.repo {
+  overflow-y: auto;
+  cursor: pointer;
+}
+
+.repo-avatar {
+  float: left;
+  margin-right: 10px;
+  padding: 3px 0;
+  width: 60px;
+  cursor: pointer;
+  img {
+    border-radius: 3px;
+    height: auto;
+    width: 100%;
+  }
+}
+
+.repo-meta {
+  margin-left: 70px;
+  overflow-x: hidden;
+  cursor: pointer;
+}
+
+.repo-title {
+  color: black;
+  font-weight: bold;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.repo-desc {
+  color: #777;
+  overflow-x: hidden;
+  padding: 3px 0;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.repo-stats {
+  color: #aaa;
+  font-size: 11px;
+  cursor: pointer;
+  > div {
+    display: inline-block;
+    &:not(:first-child) {
+      margin-left: 1em;
+    }
+  }
+}
