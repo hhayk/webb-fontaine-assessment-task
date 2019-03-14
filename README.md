@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Run From Scources 
+## Run From Sources 
 
 ### `npm install && npm start`
 
